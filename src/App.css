@@ -174,7 +174,8 @@ body {
   padding-inline: 44px;
 }
 .movie-card img {
-  min-width: 100px;
+  min-width: 99px;
+  max-width: 300px;
   object-fit: cover;
   border-radius: 4px;
 }

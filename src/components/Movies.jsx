@@ -1,11 +1,22 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { FaPlusCircle, FaStar } from "react-icons/fa";
 import { IoMdAddCircle } from "react-icons/io";
 import SearchMoviesContext from "../context/SearchMoviesContext";
 const url = "https://image.tmdb.org/t/p/w500";
+import MoviesContext from "../context/MoviesContext";
 export default function Movies() {
   const { movies } = useContext(SearchMoviesContext);
+  const { addMovie, watchList  } = useContext(MoviesContext);
 
+  useEffect(()=>{
+    console.log("Watchlist actual:", watchList);
+
+  }, [watchList])
+
+  const addMovieToWatchList = (movie) => {
+    addMovie(movie);
+    console.log("Added movie to watchlist:", movie);
+  };
   return (
     movies && (
       <div className="movies-grid">
@@ -25,11 +36,11 @@ export default function Movies() {
                 <p>duration</p>
                 <p>genre</p>
                 <p>
-                  <button>
+                  <button onClick={() => addMovieToWatchList(movie)}>
                     <span>
                       <IoMdAddCircle color="white" size={35} />
                     </span>
-                    Add to Watchlist
+                    Watchlist
                   </button>
                 </p>
               </div>
