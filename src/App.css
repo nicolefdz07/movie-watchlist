@@ -241,3 +241,40 @@ body {
   line-height: 20px;
   font-family: Inter;
 }
+
+.empty{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 2rem;
+  min-height: 60vh;
+  margin: 0 auto;
+}
+.empty-watchlist h1{
+  color: #787878;
+  font-style: bold;
+  font-family: Inter;
+  font-size: 2rem;
+}
+.empty-watchlist a{
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.empty-movies svg {
+  display: block;
+  margin: 0 auto 2px auto; 
+  
+}
+.empty-movies  h1{
+  color: #2E2E2F;
+  font-style: bold;
+  font-family: Inter;
+  font-size: 2rem;
+}

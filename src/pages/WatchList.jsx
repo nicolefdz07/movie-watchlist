@@ -3,6 +3,8 @@ import MoviesContext from "../context/MoviesContext";
 const url = "https://image.tmdb.org/t/p/w500";
 import { FaStar } from "react-icons/fa";
 import { MdOutlineRemoveCircle } from "react-icons/md";
+import { IoMdAddCircle } from "react-icons/io";
+import { Link } from "react-router-dom";
 export default function WatchList(){
   const { watchList, removeMovie } = useContext(MoviesContext);
 
@@ -11,7 +13,7 @@ export default function WatchList(){
     removeMovie(movie);
   };
 
-  return watchList.length > 0 && (
+  return watchList.length > 0 ? (
     <div className="movies-grid">
             {watchList.map((movie) => (
               <div className="movie-card" key={movie.id}>
@@ -42,5 +44,10 @@ export default function WatchList(){
               </div>
             ))}
           </div>
+  ) : (
+    <div className="empty empty-watchlist">
+      <h1>Your watchlist is looking a little empty...</h1>
+      <Link to='/'><span><IoMdAddCircle color="white" size={35} /></span>Lets add some movies!</Link>
+    </div>
   )
 }

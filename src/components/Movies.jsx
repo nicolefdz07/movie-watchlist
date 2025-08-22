@@ -4,19 +4,27 @@ import { IoMdAddCircle } from "react-icons/io";
 import SearchMoviesContext from "../context/SearchMoviesContext";
 const url = "https://image.tmdb.org/t/p/w500";
 import MoviesContext from "../context/MoviesContext";
+import { TbMovie } from "react-icons/tb";
 export default function Movies() {
   const { movies } = useContext(SearchMoviesContext);
-  const { addMovie, watchList  } = useContext(MoviesContext);
+  const { addMovie, watchList } = useContext(MoviesContext);
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log("Watchlist actual:", watchList);
-
-  }, [watchList])
+  }, [watchList]);
 
   const addMovieToWatchList = (movie) => {
     addMovie(movie);
     console.log("Added movie to watchlist:", movie);
   };
+  if (!movies || movies.length === 0) {
+    return (
+      <div className="empty empty-movies">
+        <TbMovie color="#2E2E2F" size={150} />
+        <h1>Start Exploring</h1>
+      </div>
+    );
+  }
   return (
     movies && (
       <div className="movies-grid">
