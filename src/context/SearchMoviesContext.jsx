@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import getMovies from "../api";
+import getMovies, { getMovieDetails } from "../api";
 
 const SearchMoviesContext = createContext();
 
@@ -8,6 +8,7 @@ export const SearchMoviesProvider = ({ children }) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [movieDetails, setMovieDetails] = useState(null);
 
   const handleChangeTerm = (e) => {
     const newTerm = e.target.value;
@@ -32,6 +33,14 @@ export const SearchMoviesProvider = ({ children }) => {
       setLoading(false);
     }
   };
+  const fetchMovieDetails = async (movieId) => {
+    try {
+      const movieDetails = await getMovieDetails(movieId);
+      setMovieDetails(movieDetails);
+    } catch (error) {
+      console.error("Error fetching movie details:", error);
+    }
+  };
 
   const searchMoviesCtx = {
     term,
@@ -40,6 +49,8 @@ export const SearchMoviesProvider = ({ children }) => {
     fetchMovies,
     loading,
     error,
+    movieDetails,
+    fetchMovieDetails
   };
   return (
     <SearchMoviesContext.Provider value={searchMoviesCtx}>

@@ -5,6 +5,7 @@ export default function SearchBar() {
    
   const { term, handleChangeTerm, fetchMovies } =
     useContext(SearchMoviesContext);
+     
   return (
     <form className="search-bar" onSubmit={fetchMovies}>
       <input
