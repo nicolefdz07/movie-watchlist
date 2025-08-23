@@ -33,7 +33,7 @@ export default function WatchList(){
                     <p>
                       <button onClick={() => removeMovieFromWatchList(movie)}>
                         <span>
-                          <MdOutlineRemoveCircle color="white" size={35}/>
+                          <MdOutlineRemoveCircle className="icon" color="white" />
                         </span>
                         Remove 
                       </button>

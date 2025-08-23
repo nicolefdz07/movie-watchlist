@@ -1,22 +1,24 @@
-import { useContext, useEffect } from "react";
-import { FaPlusCircle, FaStar } from "react-icons/fa";
+import { useContext } from "react";
+import { FaStar } from "react-icons/fa";
 import { IoMdAddCircle } from "react-icons/io";
-import SearchMoviesContext from "../context/SearchMoviesContext";
-const url = "https://image.tmdb.org/t/p/w500";
-import MoviesContext from "../context/MoviesContext";
 import { TbMovie } from "react-icons/tb";
+import MoviesContext from "../context/MoviesContext";
+import SearchMoviesContext from "../context/SearchMoviesContext";
+import NotFound from "./NotFound";
+const url = "https://image.tmdb.org/t/p/w500";
 export default function Movies() {
-  const { movies } = useContext(SearchMoviesContext);
-  const { addMovie, watchList } = useContext(MoviesContext);
+  const { movies, error } = useContext(SearchMoviesContext);
+  const { addMovie} = useContext(MoviesContext);
 
-  useEffect(() => {
-    console.log("Watchlist actual:", watchList);
-  }, [watchList]);
+  
 
   const addMovieToWatchList = (movie) => {
     addMovie(movie);
-    console.log("Added movie to watchlist:", movie);
+    
   };
+  if (error) {
+    return <NotFound />;
+  }
   if (!movies || movies.length === 0) {
     return (
       <div className="empty empty-movies">
@@ -25,8 +27,10 @@ export default function Movies() {
       </div>
     );
   }
+
   return (
-    movies && (
+    movies &&
+    movies.length > 0 && (
       <div className="movies-grid">
         {movies.map((movie) => (
           <div className="movie-card" key={movie.id}>
@@ -46,7 +50,7 @@ export default function Movies() {
                 <p>
                   <button onClick={() => addMovieToWatchList(movie)}>
                     <span>
-                      <IoMdAddCircle color="white" size={35} />
+                      <IoMdAddCircle color="white" className="add-icon icon" />
                     </span>
                     Watchlist
                   </button>

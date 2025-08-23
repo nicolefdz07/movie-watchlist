@@ -3,7 +3,7 @@ import "./App.css";
 import Layout from "./components/Layout";
 import SearchMovie from "./pages/SearchMovie";
 import Watchlist from "./pages/WatchList";
-
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -13,6 +13,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<SearchMovie />} />
             <Route path="watchlist" element={<Watchlist />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>
