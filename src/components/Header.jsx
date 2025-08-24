@@ -8,10 +8,10 @@ export default function Header() {
   
   return (
     <header className="hero-container">
-      <Link to='/'><h1>{location.pathname === '/' ? 'Find your film' : 'My WatchList'}</h1></Link>
+      <Link to={location.pathname ==='/' ? '/' : '/watchlist'}><h1>{location.pathname === '/' ? 'Find your film' : 'My WatchList'}</h1></Link>
 			<Link 
       className="watchlist-link"
-      to='watchlist'>{location.pathname === '/watchlist' ? 'Search for movies' : 'My WatchList'}</Link>
+      to={ location.pathname === '/watchlist' ? '/' : 'watchlist'}>{location.pathname === '/watchlist' ? 'Search for movies' : 'My WatchList'}</Link>
     </header>
   );
 }
